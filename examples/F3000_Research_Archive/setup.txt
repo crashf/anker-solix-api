@@ -1,0 +1,98 @@
+SOLIX F3000 Portable Power Station with Smart Meter Support
+==========================================================
+
+Device: Anker SOLIX F3000 Portable Power Station
+Model: A1782
+Type: Solarbank PPS (Portable Power Station with Smart Meter support)
+Capacity: 3072 Wh
+Market: US
+
+MQTT Support: YES ✅
+Real-time monitoring via MQTT with comprehensive field mapping
+
+Discovered MQTT Message Types:
+=============================
+
+0857 - state_info (Basic status)
+- a1: status_code
+
+0401 - param_info (Real-time power data)  
+- a1: status_code
+- a2: ac_output_enabled (CONFIRMED: 0=off, 1=on)
+- a3: power_consumption (CONFIRMED: AC power in watts, 0-1229W observed)
+- a4: power_value_3 (Unknown)
+- a5: power_value_4 (Unknown)  
+- a6: ac_ready_flag (CONFIRMED: stays 1 when AC ready)
+
+0421 - param_info (Detailed configuration)
+- a1: status_code
+- a2: device_identifier (33-byte device string)
+- a3: power_consumption (CONFIRMED: AC power consumption, 0-1229W)
+- a6: usb_output_power (CONFIRMED: Total USB power, smart power management)
+- af: usb_power_indicator (CONFIRMED: USB power confirmation field)
+- aa: unknown_status_indicator (shows 01:00:00 during operation)
+
+0889 - param_info (Additional parameters)
+- a1: status_code  
+- a2: param_1
+- a3: param_2
+- a4: battery_soc (potential)
+- a5: param_3
+- a6: param_4
+- fe: msg_timestamp
+
+Confirmed Power Monitoring Capabilities:
+========================================
+
+AC Output Power:
+- Real-time wattage monitoring (field a3)
+- Tested range: 0W (idle) to 1229W (heavy load)
+- Updates every ~2-4 seconds
+
+USB Output Power:
+- Smart power management (field a6)  
+- Individual device detection
+- Power optimization (Phone: 6W, Phone+Pi4: 2W total)
+- Real-time connect/disconnect detection
+
+AC Output Control:
+- Enable/disable state monitoring (field a2)
+- Ready status indication (field a6 in 0401)
+
+Test Scenarios Completed:
+=========================
+
+✅ AC Output Control (toggle on/off)
+✅ AC Power Consumption (1200W load testing)
+✅ USB Single Device (phone charging - 6W)
+✅ USB Multiple Devices (phone + Raspberry Pi 4 - 2W optimized)
+✅ Battery Operation (all testing done on battery power)
+
+Integration Status:
+==================
+
+✅ Device Recognition: A1782 defined in apitypes.py
+✅ MQTT Mapping: Complete field mapping in mqttmap.py  
+✅ Device Category: Properly classified as SOLARBANK_PPS
+✅ Capacity: 3072 Wh defined in SolixDeviceCapacity
+
+Outstanding Test Areas:
+======================
+
+🔄 12V DC Output Power Monitoring
+🔄 Solar Input Power Detection  
+🔄 AC Input Charging Behavior
+🔄 Battery Status Fields (voltage, temperature, SoC)
+🔄 MQTT Control Commands (AC on/off, power limits)
+
+Contributors:
+=============
+- Field Discovery: Wayne L.
+- Protocol Analysis: Real-device MQTT monitoring
+- Integration: Anker Solix API Project
+
+Notes:
+======
+This device represents the most comprehensively mapped portable power station 
+in the project, with confirmed real-time power monitoring for both AC and USB 
+outputs through MQTT protocol analysis.

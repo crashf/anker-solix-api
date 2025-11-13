@@ -1,0 +1,15 @@
+{
+  "code": 0,
+  "msg": "success!",
+  "data": {
+    "site_list": [
+      {
+        "site_id": "virtual-9JVB42LXXXXX",
+        "site_name": "Standalone Portable Power Station",
+        "ms_type": 1,
+        "power_site_type": 0
+      }
+    ]
+  },
+  "trace_id": "f3000test123456789abcdef"
+}

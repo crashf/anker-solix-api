@@ -1,0 +1,21 @@
+{
+  "code": 0,
+  "msg": "success!",
+  "data": {
+    "site_list": [],
+    "solar_list": [],
+    "pps_list": [
+      {
+        "device_pn": "A1782",
+        "device_sn": "9JVB42LXXXXX",
+        "device_name": "SOLIX F3000 Portable Power Station",
+        "power": "251",
+        "power_unit": "W",
+        "power_icon": 1
+      }
+    ],
+    "solarbank_list": [],
+    "powerpanel_list": []
+  },
+  "trace_id": "f3000test123456789abcdef"
+}

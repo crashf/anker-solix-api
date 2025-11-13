@@ -1,0 +1,35 @@
+{
+  "code": 0,
+  "msg": "success!",
+  "data": {
+    "data": [
+      {
+        "device_sn": "9JVB42LXXXXX",
+        "product_code": "A1782",
+        "bt_ble_id": "A40CC3XXXXXX",
+        "bt_ble_mac": "A40CC3XXXXXX",
+        "device_name": "SOLIX F3000 Portable Power Station",
+        "alias_name": "SOLIX F3000 Portable Power Station",
+        "img_url": "https://public-aiot-fres-ms.s3.us-west-2.amazonaws.com/anker_brand/T3200_app_image.png",
+        "link_time": 1742648615,
+        "wifi_online": true,
+        "wifi_name": "wifi-network-1",
+        "relate_type": [
+          "wifi"
+        ],
+        "charge": false,
+        "bws_surplus": 0,
+        "device_sw_version": "v2.5.7",
+        "has_manual": false,
+        "hes_data": null,
+        "tag": "",
+        "tag_img": "",
+        "platform_tag": "",
+        "platform_logo": "",
+        "rssi": "-45",
+        "intgr_device": null
+      }
+    ]
+  },
+  "trace_id": "f3000test123456789abcdef"
+}

@@ -393,30 +393,39 @@ class DeviceHexDataField:
                 # field description needs "type" with a DeviceHexDataTypes base type vor value conversion.
                 # The "length" with int for byte count can be specified (default is 1 Byte),
                 # where Length of 0 indicates that first byte contains variable field length
-                for key, bytemap in (fieldmap.get("bytes", {}) or fieldmap).items():
-                    pos = int(key)
-                    if (length := bytemap.get("length", 1)) == 0:
-                        # first byte is length of bytes following for field
-                        length = int.from_bytes(self.f_value[pos : pos + 1])
-                        values.update(
-                            self.extract_value(
-                                hexdata=self.f_value[pos + 1 : pos + length + 1],
-                                fieldtype=bytemap.get(
-                                    "type", DeviceHexDataTypes.unk.value
-                                ),
-                                fieldmap=bytemap,
+                bytemap_dict = fieldmap.get("bytes", {})
+                if not bytemap_dict:
+                    # Handle simple field mapping without bytes structure
+                    values[fieldmap.get("name", "unknown")] = self.f_value.hex()
+                else:
+                    for key, bytemap in bytemap_dict.items():
+                        try:
+                            pos = int(key)
+                        except ValueError:
+                            # Skip non-numeric keys (like 'name')
+                            continue
+                        if (length := bytemap.get("length", 1)) == 0:
+                            # first byte is length of bytes following for field
+                            length = int.from_bytes(self.f_value[pos : pos + 1])
+                            values.update(
+                                self.extract_value(
+                                    hexdata=self.f_value[pos + 1 : pos + length + 1],
+                                    fieldtype=bytemap.get(
+                                        "type", DeviceHexDataTypes.unk.value
+                                    ),
+                                    fieldmap=bytemap,
+                                )
                             )
-                        )
-                    else:
-                        values.update(
-                            self.extract_value(
-                                hexdata=self.f_value[pos : pos + length],
-                                fieldtype=bytemap.get(
-                                    "type", DeviceHexDataTypes.unk.value
-                                ),
-                                fieldmap=bytemap,
+                        else:
+                            values.update(
+                                self.extract_value(
+                                    hexdata=self.f_value[pos : pos + length],
+                                    fieldtype=bytemap.get(
+                                        "type", DeviceHexDataTypes.unk.value
+                                    ),
+                                    fieldmap=bytemap,
+                                )
                             )
-                        )
             case _:
                 # check if type provided in mapping and convert value accordingly
                 if (

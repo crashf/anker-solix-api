@@ -1,0 +1,44 @@
+F3000 Standalone Example Configuration
+=====================================
+
+Device: SOLIX F3000 Portable Power Station (A1782)
+Serial: 9JVB42LXXXXX (anonymized)
+Firmware: v2.5.7
+Battery: 3072Wh LiFePO4
+Category: SOLARBANK_PPS
+
+Device Configuration:
+- AC Output: 3 outlets, 3000W max combined
+- USB Output: 4 ports with smart power management
+- Car Port: 12V DC output (not active in this example)
+- Battery: 85% charge level
+- Temperature: 23.5°C
+
+Current Status (Example Data):
+- AC Power: 245W (AC1: 118W, AC2: 127W, AC3: 0W)
+- USB Power: 6W (USB2 only active at 6W)
+- Battery Power: -251W (discharging)
+- Total Load: 251W
+- Input Power: 0W (not charging)
+
+MQTT Protocol Support:
+- Message Type 0857: Main status updates
+- Message Type 0401: Individual outlet monitoring  
+- Message Type 0421: Detailed configuration
+- Message Type 0889: Battery and system data
+- Message Type 0301: Command responses
+
+API Integration:
+- Device Type: pps (Portable Power Station)
+- Category: SOLARBANK_PPS 
+- Virtual Site: virtual-9JVB42LXXXXX
+- Metrics: Full AC/USB monitoring, battery status, power flow
+
+MQTT Field Mappings:
+All confirmed field mappings available in api/mqttmap.py
+Real-time monitoring validated with physical device
+AC control commands working at protocol level
+
+Test Usage:
+Set TESTAPIFROMJSON = True and JSONFOLDER = "F3000_Standalone"
+in test scripts to use this example data for development.

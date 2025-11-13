@@ -1,0 +1,8 @@
+{
+  "code": 0,
+  "msg": "success!",
+  "data": {
+    "charging_devices": []
+  },
+  "trace_id": "f3000test123456789abcdef"
+}

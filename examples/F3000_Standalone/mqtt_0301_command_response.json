@@ -1,0 +1,15 @@
+{
+  "msg_type": "0301",
+  "description": "F3000 Command Response - AC Control Acknowledgment", 
+  "timestamp": "2025-01-23T14:30:27Z",
+  "fields": {
+    "command_id": "0065",
+    "response_code": "00",
+    "ac1_switch": 1,
+    "ac2_switch": 1,
+    "ac3_switch": 0,
+    "usb_switch": 1,
+    "car_switch": 0,
+    "status": "Command acknowledged successfully"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "code": 0,
+  "msg": "success!",
+  "data": {
+    "device_list": [
+      {
+        "device_sn": "9JVB42LXXXXX",
+        "device_name": "SOLIX F3000 Portable Power Station",
+        "device_pn": "A1782",
+        "device_img": "https://public-aiot-fres-ms.s3.us-west-2.amazonaws.com/anker_brand/T3200_app_image.png",
+        "bt_ble_id": "A40CC3XXXXXX",
+        "bt_ble_mac": "A40CC3XXXXXX",
+        "device_sw_version": "v2.5.7",
+        "bind_site_status": "",
+        "charging_status": "0",
+        "power_unit": "W",
+        "power_value": "251",
+        "wireless_type": "wifi",
+        "main_version": "",
+        "photovoltaic_power": "0",
+        "output_power": "251"
+      }
+    ]
+  },
+  "trace_id": "f3000test123456789abcdef"
+}

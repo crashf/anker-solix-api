@@ -774,4 +774,51 @@ SOLIXMQTTMAP = {
             "fe": {"name": "msg_timestamp"},
         },
     },
+    # SOLIX F3000 Portable Power Station with Smart Meter support (A1782)
+    # Comprehensive MQTT field mapping based on extensive testing and protocol analysis
+    "A1782": {
+        "0857": {
+            "topic": "state_info",
+            "a1": {"name": "status_code"},  # Basic device status code
+        },
+        "0301": {
+            "topic": "command_response", 
+            "a1": {"name": "response_code"},  # Command acknowledgment response code
+            # DISCOVERY: New message type found during AC control testing
+            # Device responds with 0301 messages when processing MQTT commands
+        },
+        "0401": {
+            "topic": "param_info",
+            # Real-time AC power monitoring message type
+            "a1": {"name": "status_code"},
+            "a2": {"name": "ac_output_enabled"},    # CONFIRMED: 0=off, 1=on (AC output state)
+            "a3": {"name": "ac_power_consumption"}, # CONFIRMED: AC power output in watts (0-1229W observed)
+            "a4": {"name": "power_value_3"},        # Additional power metric (TBD)
+            "a5": {"name": "power_value_4"},        # Additional power metric (TBD)
+            "a6": {"name": "ac_ready_flag"},        # CONFIRMED: AC ready status flag
+        },
+        "0421": {
+            "topic": "param_info",
+            # Detailed device configuration and power data
+            "a1": {"name": "status_code"},
+            "a2": {"name": "device_identifier"},    # 33-byte device identification string
+            "a3": {"name": "ac_power_consumption"}, # CONFIRMED: AC power consumption (0-1229W)
+            "a4": {"name": "power_value_3"},        # Additional power metric
+            "a5": {"name": "power_value_4"},        # Additional power metric
+            "a6": {"name": "usb_output_power"},     # CONFIRMED: Total USB output power (0-6W, smart management)
+            "af": {"name": "usb_power_indicator"},  # CONFIRMED: USB power status indicator
+            "aa": {"name": "unknown_status"},       # Additional status field (TBD)
+        },
+        "0889": {
+            "topic": "param_info",
+            # Battery and system parameters
+            "a1": {"name": "status_code"},
+            "a2": {"name": "param_1"},              # System parameter (TBD)
+            "a3": {"name": "param_2"},              # System parameter (TBD)
+            "a4": {"name": "battery_soc"},          # Battery State of Charge percentage
+            "a5": {"name": "param_3"},              # System parameter (TBD)
+            "a6": {"name": "param_4"},              # System parameter (TBD)
+            "fe": {"name": "msg_timestamp"},        # Message timestamp
+        },
+    },
 }

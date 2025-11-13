@@ -1,0 +1,83 @@
+{
+  "virtual-9JVB42LXXXXX": {
+    "type": "system",
+    "site_info": {
+      "site_id": "virtual-9JVB42LXXXXX",
+      "site_name": "Standalone Portable Power Station",
+      "ms_type": 1,
+      "power_site_type": 0,
+      "support_device_models": [
+        "A1782"
+      ],
+      "current_site_device_models": [
+        "A1782"
+      ]
+    },
+    "site_type": "virtual",
+    "site_admin": true,
+    "pps_list": [
+      {
+        "device_pn": "A1782",
+        "device_sn": "9JVB42LXXXXX"
+      }
+    ],
+    "pps_info": {
+      "pps_list": [
+        {
+          "device_pn": "A1782",
+          "device_sn": "9JVB42LXXXXX",
+          "device_name": "SOLIX F3000 Portable Power Station"
+        }
+      ]
+    },
+    "statistics": [
+      {
+        "type": "1",
+        "total": "156.32",
+        "unit": "kwh"
+      },
+      {
+        "type": "2",
+        "total": "158",
+        "unit": "kg"
+      },
+      {
+        "type": "3",
+        "total": "62.5",
+        "unit": "€"
+      }
+    ],
+    "site_details": {
+      "price": 0.4,
+      "site_price_unit": "€"
+    },
+    "energy_details": {
+      "last_period": {
+        "date": "2025-01-22",
+        "solar_production": "0",
+        "battery_discharge": "2.45",
+        "battery_charge": "0",
+        "total_usage": "2.45"
+      },
+      "today": {
+        "date": "2025-01-23",
+        "solar_production": "0",
+        "battery_discharge": "1.89",
+        "battery_charge": "0",
+        "total_usage": "1.89"
+      }
+    },
+    "device_list": [
+      {
+        "device_pn": "A1782",
+        "device_sn": "9JVB42LXXXXX",
+        "device_name": "SOLIX F3000 Portable Power Station",
+        "device_img": "https://public-aiot-fres-ms.s3.us-west-2.amazonaws.com/anker_brand/T3200_app_image.png",
+        "bt_ble_id": "A40CC3XXXXXX",
+        "bt_ble_mac": "A40CC3XXXXXX",
+        "device_sw_version": "v2.5.7",
+        "alias_name": "SOLIX F3000 Portable Power Station"
+      }
+    ]
+  }
+}

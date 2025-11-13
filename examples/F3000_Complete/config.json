@@ -1,0 +1,64 @@
+{
+  "device_info": {
+    "device_pn": "A1782",
+    "device_name": "SOLIX F3000 Portable Power Station",
+    "device_category": "SOLARBANK_PPS",
+    "capacity_wh": 3072,
+    "market": "US"
+  },
+  "mqtt_support": {
+    "enabled": true,
+    "confirmed_fields": {
+      "0401": {
+        "a1": "status_code",
+        "a2": "ac_output_enabled",
+        "a3": "power_consumption", 
+        "a4": "power_value_3",
+        "a5": "power_value_4",
+        "a6": "ac_ready_flag"
+      },
+      "0421": {
+        "a1": "status_code",
+        "a2": "device_identifier",
+        "a3": "power_consumption",
+        "a6": "usb_output_power",
+        "af": "usb_power_indicator",
+        "aa": "unknown_status_indicator"
+      },
+      "0857": {
+        "a1": "status_code"
+      },
+      "0889": {
+        "a1": "status_code",
+        "a2": "param_1", 
+        "a3": "param_2",
+        "a4": "battery_soc",
+        "a5": "param_3",
+        "a6": "param_4",
+        "fe": "msg_timestamp"
+      }
+    }
+  },
+  "test_results": {
+    "ac_output_control": "COMMANDS_WORKING",
+    "ac_power_monitoring": "CONFIRMED (0-1229W)",
+    "usb_power_monitoring": "CONFIRMED (smart power management)",
+    "battery_operation": "CONFIRMED",
+    "real_time_updates": "CONFIRMED",
+    "mqtt_commands": {
+      "disable_command": "ff091e0003000f0057a10122a2020100a305033c000000fe0503f2241669",
+      "enable_command": "ff091e0003000f0057a10122a2020102a305033c000000fe0503fa241669",
+      "command_difference": "a2 field: 00 (disable) vs 02 (enable)",
+      "device_response": "Immediate state_info messages, sequence increments"
+    }
+  },
+  "outstanding_tests": [
+    "Physical AC output verification with load testing",
+    "12V DC output monitoring and control", 
+    "Solar input power detection",
+    "AC input charging behavior",
+    "Battery status fields",
+    "Alternative MQTT command message types (0421, 0401)",
+    "Different field values for AC control (01, 03, 04)"
+  ]
+}

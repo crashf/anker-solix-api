@@ -1,0 +1,28 @@
+{
+  "test_config": {
+    "device_type": "F3000",
+    "device_pn": "A1782", 
+    "device_sn": "9JVB42LXXXXX",
+    "site_id": "virtual-9JVB42LXXXXX",
+    "test_mode": "standalone_pps",
+    "mqtt_enabled": true,
+    "supported_messages": ["0857", "0401", "0421", "0889", "0301"]
+  },
+  "device_specs": {
+    "battery_capacity_wh": 3072,
+    "max_ac_output_w": 3000,
+    "ac_outlets": 3,
+    "usb_ports": 4,
+    "car_port": 1,
+    "firmware": "v2.5.7",
+    "category": "SOLARBANK_PPS"
+  },
+  "monitoring_capabilities": {
+    "real_time_power": true,
+    "individual_outlet_monitoring": true,
+    "battery_monitoring": true,
+    "temperature_monitoring": true,
+    "smart_usb_management": true,
+    "ac_control_commands": true
+  }
+}

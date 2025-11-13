@@ -995,6 +995,26 @@ class SolarbankDeviceMetrics:
         "ac_input_limit",
         "power_limit_option",
     }
+    # SOLIX F3000 Portable Power Station A1782, with AC outputs, USB ports, and Smart Meter support
+    A1782: ClassVar[set[str]] = {
+        "ac_power",  # AC output power monitoring from MQTT 0857
+        "usb_power",  # USB output power monitoring from MQTT 0857  
+        "battery_level",  # Battery percentage from MQTT 0857
+        "battery_power",  # Battery charge/discharge power from MQTT 0857
+        "input_power",  # Total input power (solar + AC charging) from MQTT 0857
+        "to_home_load",  # Power to connected loads from MQTT 0857
+        "ac_input_limit",  # AC charging input limit from MQTT 0421
+        "power_limit",  # AC output power limit from MQTT 0421
+        "battery_temp",  # Battery temperature monitoring from MQTT 0889
+        "ac1_power",  # Individual AC outlet 1 power from MQTT 0401
+        "ac2_power",  # Individual AC outlet 2 power from MQTT 0401
+        "ac3_power",  # Individual AC outlet 3 power from MQTT 0401
+        "usb1_power",  # Individual USB port 1 power from MQTT 0401
+        "usb2_power",  # Individual USB port 2 power from MQTT 0401
+        "usb3_power",  # Individual USB port 3 power from MQTT 0401
+        "usb4_power",  # Individual USB port 4 power from MQTT 0401
+        "car_power",  # Car port power from MQTT 0401
+    }
     # Inverter Output Settings
     INVERTER_OUTPUT_OPTIONS: ClassVar[dict[str, Any]] = {
         "A5143": ["600", "800"],

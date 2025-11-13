@@ -1,0 +1,27 @@
+{
+  "msg_type": "0857",
+  "description": "F3000 Status Update - Main monitoring message",
+  "timestamp": "2025-01-23T14:30:25Z",
+  "fields": {
+    "ac_total_power": 245,
+    "ac1_power": 118,
+    "ac2_power": 127,
+    "ac3_power": 0,
+    "usb_total_power": 6,
+    "usb1_power": 0,
+    "usb2_power": 6, 
+    "usb3_power": 0,
+    "usb4_power": 0,
+    "car_power": 0,
+    "battery_level": 85,
+    "battery_power": -251,
+    "input_total_power": 0,
+    "dc_input_power": 0,
+    "ac_input_power": 0,
+    "status_flags": "0x0001",
+    "device_temp": 235,
+    "battery_temp": 235,
+    "ac_output_voltage": 2300,
+    "ac_output_frequency": 5000
+  }
+}
