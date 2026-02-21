@@ -2,15 +2,46 @@
 """
 F3000 Manual Power Monitor
 Run this when you have active load connected (~600W)
-Enter credentials manually and shows power readings
+Uses environment variables: ANKERUSER, ANKERPASSWORD, ANKERCOUNTRY
 """
 
 import asyncio
 from datetime import datetime
 import logging
+import os
 
 from aiohttp import ClientSession
 from api.api import AnkerSolixApi
+
+def get_credentials():
+    """Get credentials from environment variables or prompt"""
+    email = os.getenv('ANKERUSER')
+    password = os.getenv('ANKERPASSWORD') 
+    country = os.getenv('ANKERCOUNTRY')
+    
+    print("🔑 Checking credentials...")
+    
+    if not email:
+        email = input("Email (set ANKERUSER env var): ")
+    else:
+        print(f"✅ Email from environment: {email}")
+    
+    if not password:
+        import getpass
+        password = getpass.getpass("Password (set ANKERPASSWORD env var): ")
+    else:
+        print("✅ Password from environment")
+    
+    if not country:
+        country = input("Country (set ANKERCOUNTRY env var, e.g. CA): ").upper()
+    else:
+        print(f"✅ Country from environment: {country}")
+        
+    if not all([email, password, country]):
+        print("❌ Missing credentials")
+        return None, None, None
+        
+    return email, password, country
 
 # Your current power reading
 current_power = -1
@@ -71,27 +102,16 @@ async def manual_monitor():
     print("🔋 F3000 Manual Power Monitor")
     print("=" * 35)
     print("📋 Instructions:")
-    print("1. Make sure your load is connected and running")
-    print("2. Enter your Anker credentials when prompted") 
+    print("1. Set environment variables: ANKERUSER, ANKERPASSWORD, ANKERCOUNTRY")
+    print("2. Make sure your load is connected and running")
     print("3. Watch for power pattern analysis")
     print("4. Press Ctrl+C to stop")
     print()
     
-    # Get credentials manually
-    email = input("Username (email): ")
-    if not email.strip():
-        print("❌ Email required")
+    # Get credentials from environment variables
+    email, password, country = get_credentials()
+    if not email:
         return
-        
-    import getpass
-    password = getpass.getpass("Password: ")
-    if not password.strip():
-        print("❌ Password required")
-        return
-        
-    country = input("Country (CA/US/DE/etc): ").upper()
-    if not country.strip():
-        country = "CA"
     
     async with ClientSession() as websession:
         try:

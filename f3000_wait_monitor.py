@@ -2,14 +2,46 @@
 """
 F3000 Extended Wait Monitor
 Waits longer for MQTT messages and shows when they arrive
+Uses environment variables: ANKERUSER, ANKERPASSWORD, ANKERCOUNTRY
 """
 
 import asyncio
 from datetime import datetime
 import logging
+import os
 
 from aiohttp import ClientSession
 from api.api import AnkerSolixApi
+
+def get_credentials():
+    """Get credentials from environment variables or prompt"""
+    email = os.getenv('ANKERUSER')
+    password = os.getenv('ANKERPASSWORD') 
+    country = os.getenv('ANKERCOUNTRY')
+    
+    print("🔑 Checking credentials...")
+    
+    if not email:
+        email = input("Email (set ANKERUSER env var): ")
+    else:
+        print(f"✅ Email from environment: {email}")
+    
+    if not password:
+        import getpass
+        password = getpass.getpass("Password (set ANKERPASSWORD env var): ")
+    else:
+        print("✅ Password from environment")
+    
+    if not country:
+        country = input("Country (set ANKERCOUNTRY env var, e.g. CA): ").upper()
+    else:
+        print(f"✅ Country from environment: {country}")
+        
+    if not all([email, password, country]):
+        print("❌ Missing credentials")
+        return None, None, None
+        
+    return email, password, country
 
 # Track messages received
 message_count = 0
@@ -85,17 +117,13 @@ async def extended_monitor():
     print("🔋 F3000 Extended Wait Monitor")
     print("=" * 40)
     print("This version waits longer and shows all MQTT activity")
+    print("Set environment variables: ANKERUSER, ANKERPASSWORD, ANKERCOUNTRY")
     print()
     
-    # Get credentials
-    email = input("Username (email): ")
-    if not email.strip():
-        print("❌ Email required")
+    # Get credentials from environment variables
+    email, password, country = get_credentials()
+    if not email:
         return
-        
-    import getpass
-    password = getpass.getpass("Password: ")
-    country = input("Country (CA): ").upper() or "CA"
     
     async with ClientSession() as websession:
         try:

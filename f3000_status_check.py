@@ -2,21 +2,52 @@
 """
 Quick F3000 Status Check
 Shows current device status via API calls
+Uses environment variables: ANKERUSER, ANKERPASSWORD, ANKERCOUNTRY
 """
 
 import asyncio
 import json
+import os
 from aiohttp import ClientSession
 from api.api import AnkerSolixApi
+
+def get_credentials():
+    """Get credentials from environment variables or prompt"""
+    email = os.getenv('ANKERUSER')
+    password = os.getenv('ANKERPASSWORD') 
+    country = os.getenv('ANKERCOUNTRY')
+    
+    print("🔑 Checking credentials...")
+    
+    if not email:
+        email = input("Email (set ANKERUSER env var): ")
+    else:
+        print(f"✅ Email from environment: {email}")
+    
+    if not password:
+        import getpass
+        password = getpass.getpass("Password (set ANKERPASSWORD env var): ")
+    else:
+        print("✅ Password from environment")
+    
+    if not country:
+        country = input("Country (set ANKERCOUNTRY env var, e.g. CA): ").upper()
+    else:
+        print(f"✅ Country from environment: {country}")
+        
+    if not all([email, password, country]):
+        print("❌ Missing credentials")
+        return None, None, None
+        
+    return email, password, country
 
 async def check_status():
     print("🔍 F3000 Quick Status Check")
     print("=" * 30)
     
-    email = input("Email: ")
-    import getpass
-    password = getpass.getpass("Password: ")
-    country = input("Country (CA): ").upper() or "CA"
+    email, password, country = get_credentials()
+    if not email:
+        return
     
     async with ClientSession() as websession:
         try:
